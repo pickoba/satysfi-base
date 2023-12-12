@@ -59,7 +59,7 @@ module Parser :> sig
   val persistent ~fail 'a 'd : string -> t 'a 'd
 
   % parser
-  val persistent ~try 'a 'd : t 'a 'd -> t 'a 'd  % mark savepoints to perform backtracking
+  val persistent ~try- 'a 'd : t 'a 'd -> t 'a 'd  % mark savepoints to perform backtracking
   val persistent ~lookahead 'a 'd : t 'a 'd -> t 'a 'd
   val persistent ~not-followed-by 'a 'd : t 'a 'd -> t unit 'd  % flip success and failure; never consumes input
   val persistent ~catch 'a 'd : t 'a 'd -> t (option 'a * list (parse-error 'd)) 'd
@@ -210,7 +210,7 @@ end = struct
   val persistent ~fail desc =
     empty <?> desc
 
-  val persistent ~try p s =
+  val persistent ~try- p s =
     match p s with
     | (None, _, e) ->
       (Option.none, Virgin, e)
@@ -250,7 +250,7 @@ end = struct
     (not-followed-by any) state
 
   val persistent ~satisfy pred =
-    try (any >>= (fun t -> (
+    try- (any >>= (fun t -> (
       if pred t then
         ret t
       else
@@ -258,9 +258,9 @@ end = struct
     )))
 
   val persistent ~some-sep-by sep p =
-    p >>= (fun x -> many (try (sep >> p)) >>= (fun xs -> ret (x :: xs)))
+    p >>= (fun x -> many (try- (sep >> p)) >>= (fun xs -> ret (x :: xs)))
 
-  val persistent ~many-sep-by sep p = try (some-sep-by sep p) <|> ret []
+  val persistent ~many-sep-by sep p = try- (some-sep-by sep p) <|> ret []
 
   val persistent ~between op cl p =
     op >> p >>= (fun x -> cl >> ret x)

@@ -30,7 +30,7 @@ end = struct
       | [] -> ret str
       | c :: cs -> char c >> aux cs
       end
-    in try (aux (String.to-list str))
+    in try- (aux (String.to-list str))
 
   val persistent ~lex-string input =
     Stream.unfold (fun (cs, pos) -> (
