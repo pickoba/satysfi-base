@@ -82,8 +82,8 @@ end = struct
 
 
   val set-code-font ctx =
-    ctx |> set-font Latin (`fonts-dejavu:DejaVuSansMono`, 1.,0.)
-        |> set-font OtherScript (`fonts-dejavu:DejaVuSansMono`, 1.,0.)
+    ctx %|> set-font Latin (`fonts-dejavu:DejaVuSansMono`, 1.,0.)
+        %|> set-font OtherScript (`fonts-dejavu:DejaVuSansMono`, 1.,0.)
         |> set-font-size (get-font-size ctx *' .75)
         |> set-leading 13.5pt
         |> set-hyphen-penalty 100000

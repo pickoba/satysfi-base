@@ -1,6 +1,6 @@
 module TypesetFont :> sig
 
-    val \force-font : inline [?(font-size : float) string, inline-text]
+    val \force-font : inline [?(font-size : float) font, inline-text]
 
 end = struct
 

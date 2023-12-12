@@ -18,9 +18,9 @@ module Context :> sig
   val set-min-paragraph-ascender-and-descender : length -> length -> context -> context
   val set-font-size : length -> context -> context
   val get-font-size : context -> length
-  val set-font : script -> font -> context -> context
-  val get-font : script -> context -> font
-  val set-math-font : string -> context -> context
+  val set-font : script -> font-with-ratio -> context -> context
+  val get-font : script -> context -> font-with-ratio
+  val set-math-font : font -> context -> context
   val set-dominant-wide-script : script -> context -> context
   val get-dominant-wide-script : context -> script
   val set-dominant-narrow-script : script -> context -> context

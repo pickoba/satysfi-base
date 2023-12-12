@@ -1,13 +1,13 @@
 use open Util
 
 module Font :> sig
-  type t = font
-  val persistent ~make : string -> float -> float -> font
-  val persistent ~font-name : font -> string
-  val persistent ~ratio : font -> float
-  val persistent ~baseline : font -> float
+  type t = font-with-ratio
+  val persistent ~make : font -> float -> float -> font-with-ratio
+  val persistent ~font-name : font-with-ratio -> font
+  val persistent ~ratio : font-with-ratio -> float
+  val persistent ~baseline : font-with-ratio -> float
 end = struct
-  type t = string * float * float
+  type t = font-with-ratio
   val persistent ~make fn rt bl = (fn, rt, bl)
   val persistent ~font-name (fn, _, _) = fn
   val persistent ~ratio (_, rt, _) = rt
