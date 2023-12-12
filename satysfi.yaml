@@ -1,4 +1,10 @@
-language: "0.1.0"
+language: "^0.1.0"
+name: "base"
+authors:
+  - "Yuichi Nishiwaki <yuichi.nishiwaki@gmail.com>"
+  - "puripuri2100 <puripuri2100@gmail.com>"
+  - "Yuito Murase <yuito.murase@gmail.com>"
+registries: []
 contents:
   type: "library"
   main_module: "Base"
